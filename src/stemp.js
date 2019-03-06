@@ -1,13 +1,13 @@
 class stemp {
-  compile(template) {
+  compile(template = '') {
     /* eslint-disable */
     const compiled = new Function(
       'data',
       'let output;' + 
-        'with (data) {' +
-          'output = ' +
-          JSON.stringify(template).replace(/<%=(.+?)%>/g, '" + ($1) + "') + ';' +
-        '}' + 
+      'with (data) {' +
+        'output = ' + JSON.stringify(template)
+          .replace(/<%=(.+?)%>/g, '";\noutput += $1 + "') + ';' +
+      '}' + 
       'return output;'
     );
     /* eslint-enable */
@@ -15,7 +15,7 @@ class stemp {
     return compiled;
   }
 
-  render(template, data) {
+  render(template = '', data = {}) {
     const compiled = this.compile(template);
 
     return compiled(data);
