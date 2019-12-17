@@ -44,6 +44,7 @@ describe('Simplified Template Engine', () => {
       const rendered = templater.render(template);
 
       expect(typeof rendered).toEqual('string');
+      expect(rendered).toEqual(template);
     });
 
     describe('variables', () => {
