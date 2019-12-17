@@ -1,9 +1,9 @@
-import stemp from '../src/stemp';
+import Stemp from '../src/stemp';
 
 describe('Simplified Template Engine', () => {
   describe('compile', () => {
     it('should not blow up if no template is provided', () => {
-      const templater = new stemp();
+      const templater = new Stemp();
       const compiled = templater.compile();
 
       expect(typeof compiled).toEqual('function');
@@ -12,7 +12,7 @@ describe('Simplified Template Engine', () => {
     it('should return a function', () => {
       const template = 'Hello world, my name is <%=name%>!';
 
-      const templater = new stemp();
+      const templater = new Stemp();
       const compiled = templater.compile(template);
 
       expect(typeof compiled).toEqual('function');
@@ -21,7 +21,7 @@ describe('Simplified Template Engine', () => {
 
   describe('render', () => {
     it('should not blow up if no template is provided', () => {
-      const templater = new stemp();
+      const templater = new Stemp();
       const rendered = templater.render();
 
       expect(rendered).toEqual('');
@@ -31,7 +31,7 @@ describe('Simplified Template Engine', () => {
       const template = 'Hello world, my name is <%=firstName%>!';
       const expected = 'Hello world, my name is undefined';
 
-      const templater = new stemp();
+      const templater = new Stemp();
       const rendered = templater.render(template);
 
       expect(rendered).toEqual(expected);
@@ -40,7 +40,7 @@ describe('Simplified Template Engine', () => {
     it('should return a string', () => {
       const template = 'Hello!';
 
-      const templater = new stemp();
+      const templater = new Stemp();
       const rendered = templater.render(template);
 
       expect(typeof rendered).toEqual('string');
@@ -52,7 +52,7 @@ describe('Simplified Template Engine', () => {
         const template = 'Hello world, my name is <%=name%>!';
         const expected = `Hello world, my name is ${data.name}!`;
 
-        const templater = new stemp();
+        const templater = new Stemp();
         const rendered = templater.render(template, data);
 
         expect(rendered).toEqual(expected);
@@ -66,7 +66,7 @@ describe('Simplified Template Engine', () => {
         const template = 'Hello world, my name is <%=name%> and <%=status%>!';
         const expected = `Hello world, my name is ${data.name} and ${data.status}!`;
 
-        const templater = new stemp();
+        const templater = new Stemp();
         const rendered = templater.render(template, data);
 
         expect(rendered).toEqual(expected);
@@ -84,7 +84,7 @@ describe('Simplified Template Engine', () => {
           data.profile.occupation
         }!`;
 
-        const templater = new stemp();
+        const templater = new Stemp();
         const rendered = templater.render(template, data);
 
         expect(rendered).toEqual(expected);
@@ -96,7 +96,7 @@ describe('Simplified Template Engine', () => {
         const template = '5 + 5 = <%= 5 + 5 %>';
         const expected = '5 + 5 = 10';
 
-        const templater = new stemp();
+        const templater = new Stemp();
         const rendered = templater.render(template);
 
         expect(rendered).toEqual(expected);
@@ -110,7 +110,7 @@ describe('Simplified Template Engine', () => {
         const template = 'Hello world, I am <%= if (isCool) { return "AWESOME" }%>!';
         const expected = 'Hello world, I am AWESOME!';
 
-        const templater = new stemp();
+        const templater = new Stemp();
         const rendered = templater.render(template, data);
 
         expect(rendered).toEqual(expected);
