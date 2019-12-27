@@ -27,9 +27,9 @@ describe('Simplified Template Engine', () => {
       expect(rendered).toEqual('');
     });
 
-    xit('should still work if no data is provided', () => {
+    it('should still work if no data is provided', () => {
       const template = 'Hello world, my name is <%=firstName%>!';
-      const expected = 'Hello world, my name is undefined';
+      const expected = 'Hello world, my name is !';
 
       const templater = new Stemp();
       const rendered = templater.render(template);

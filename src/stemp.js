@@ -6,7 +6,12 @@ class stemp {
       'let output;' + 
       'with (data) {' +
         'output = ' + JSON.stringify(template)
-          .replace(/<%=(.+?)%>/g, '";\noutput += $1 + "') + ';' +
+          .replace(/<%=(.+?)%>/g, '";\n' + 
+            'if (typeof ($1) !== "undefined") {' +
+              'output += $1;' +
+            '}' +
+            'output += "'
+          ) + ';' +
       '}' + 
       'return output;'
     );
