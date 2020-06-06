@@ -93,7 +93,7 @@ describe('Simplified Template Engine', () => {
     });
 
     describe('expressions', () => {
-      it('should evaluate a JavaScript expression and interpolate the result', () => {
+      it('should evaluate a JavaScript arithmetic expression and interpolate the result', () => {
         const template = '5 + 5 = <% 5 + 5 %>';
         const expected = '5 + 5 = 10';
 
@@ -103,16 +103,22 @@ describe('Simplified Template Engine', () => {
         expect(rendered).toEqual(expected);
       });
 
-      xit('should evaluate a more complex JavaScript expression and interpolate the result', () => {
-        const data = {
-          isCool: true,
-        };
-
-        const template = 'Hello world, I am <%= if (isCool) { return "AWESOME" }%>!';
-        const expected = 'Hello world, I am AWESOME!';
+      it('should evaluate a JavaScript ternary expression and interpolate the result', () => {
+        const template = '5 + 5 = <% 5 + 5 === 10 ? 10 : -1 %>';
+        const expected = '5 + 5 = 10';
 
         const templater = new Stemp();
-        const rendered = templater.render(template, data);
+        const rendered = templater.render(template);
+
+        expect(rendered).toEqual(expected);
+      });
+
+      it('should evaluate a JavaScript bitwise expression and interpolate the result', () => {
+        const template = '0b01 | 0b10 = <% 1 | 2%>';
+        const expected = '0b01 | 0b10 = 3';
+
+        const templater = new Stemp();
+        const rendered = templater.render(template);
 
         expect(rendered).toEqual(expected);
       });
