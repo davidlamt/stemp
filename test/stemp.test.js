@@ -27,7 +27,7 @@ describe('Simplified Template Engine', () => {
       expect(rendered).toEqual('');
     });
 
-    it('should still work if no data is provided', () => {
+    it('should still work if no data is provided for variables', () => {
       const template = 'Hello world, my name is <%=firstName%>!';
       const expected = 'Hello world, my name is !';
 
@@ -94,7 +94,7 @@ describe('Simplified Template Engine', () => {
 
     describe('expressions', () => {
       it('should evaluate a JavaScript expression and interpolate the result', () => {
-        const template = '5 + 5 = <%= 5 + 5 %>';
+        const template = '5 + 5 = <% 5 + 5 %>';
         const expected = '5 + 5 = 10';
 
         const templater = new Stemp();

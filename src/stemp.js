@@ -1,6 +1,6 @@
 class stemp {
+  /* eslint-disable */
   compile(template = '') {
-    /* eslint-disable */
     const compiled = new Function(
       'data',
       'let output;' + 
@@ -11,14 +11,15 @@ class stemp {
               'output += $1;' +
             '}' +
             'output += "'
-          ) + ';' +
+          )
+          .replace(/<%(.+?)%>/g, '" + ($1) + "') +
       '}' + 
       'return output;'
     );
-    /* eslint-enable */
 
     return compiled;
   }
+  /* eslint-enable */
 
   render(template = '', data = {}) {
     const compiled = this.compile(template);
