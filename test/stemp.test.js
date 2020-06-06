@@ -123,5 +123,21 @@ describe('Simplified Template Engine', () => {
         expect(rendered).toEqual(expected);
       });
     });
+
+    describe('statements', () => {
+      it('should evaluate a JavaScript if statement and interpolate the result', () => {
+        // eslint-disable-next-line
+        const template = 'Hello world, I am ' +
+          '<% if (true) { %>' + 
+            'AWESOME' +
+          '<% } %>!';
+        const expected = 'Hello world, I am AWESOME!';
+
+        const templater = new Stemp();
+        const rendered = templater.render(template);
+
+        expect(rendered).toEqual(expected);
+      });
+    });
   });
 });
