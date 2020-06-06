@@ -138,6 +138,42 @@ describe('Simplified Template Engine', () => {
 
         expect(rendered).toEqual(expected);
       });
+
+      it('should evaluate a JavaScript for statement and interpolate the result', () => {
+        // eslint-disable-next-line
+        const template = 'I am hungry' +
+          '<% for (let idx = 0; idx < 5; idx++) { %>' + 
+            '!' +
+          '<% } %>';
+        const expected = 'I am hungry!!!!!';
+
+        const templater = new Stemp();
+        const rendered = templater.render(template);
+
+        expect(rendered).toEqual(expected);
+      });
+
+      it('should evaluate a JavaScript for of statement and interpolate the result', () => {
+        const data = {
+          skills: ['eating', 'living', 'sleeping'],
+        };
+
+        /* eslint-disable */
+        const template = 'My skills:\n' +
+          '<% for (const skill of skills) { %>' + 
+            '- <%= skill %>\n' +
+          '<% } %>';
+        const expected = 'My skills:\n' + 
+          '- eating\n' + 
+          '- living\n' + 
+          '- sleeping\n';
+        /* eslint-enable */
+
+        const templater = new Stemp();
+        const rendered = templater.render(template, data);
+
+        expect(rendered).toEqual(expected);
+      });
     });
   });
 });
