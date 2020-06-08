@@ -94,7 +94,7 @@ describe('Simplified Template Engine', () => {
 
     describe('expressions', () => {
       it('should evaluate a JavaScript arithmetic expression and interpolate the result', () => {
-        const template = '5 + 5 = <% 5 + 5 %>';
+        const template = '5 + 5 = <%= 5 + 5 %>';
         const expected = '5 + 5 = 10';
 
         const templater = new Stemp();
@@ -104,7 +104,7 @@ describe('Simplified Template Engine', () => {
       });
 
       it('should evaluate a JavaScript ternary expression and interpolate the result', () => {
-        const template = '5 + 5 = <% 5 + 5 === 10 ? 10 : -1 %>';
+        const template = '5 + 5 = <%= 5 + 5 === 10 ? 10 : -1 %>';
         const expected = '5 + 5 = 10';
 
         const templater = new Stemp();
@@ -114,7 +114,7 @@ describe('Simplified Template Engine', () => {
       });
 
       it('should evaluate a JavaScript bitwise expression and interpolate the result', () => {
-        const template = '0b01 | 0b10 = <% 1 | 2%>';
+        const template = '0b01 | 0b10 = <%= 1 | 2 %>';
         const expected = '0b01 | 0b10 = 3';
 
         const templater = new Stemp();

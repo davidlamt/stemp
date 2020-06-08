@@ -6,7 +6,7 @@ class stemp {
       'let output;' + 
       'with (data) {' +
         'output = ' + JSON.stringify(template)
-          // Handle variables with <%= %> 
+          // Handle variables and expressions with <%= %> 
           .replace(/<%=(.+?)%>/g, '";\n' + 
             'if (typeof ($1) !== "undefined") {' +
               'output += $1;' +
@@ -16,9 +16,7 @@ class stemp {
           // Handle statements with <% (for|if) %>
           .replace(/<%(.+?(for|if|}).+?)%>/g, '";$1' +
             'output += "'
-          )
-          // Handle expressions with <% %>
-          .replace(/<%(.+?)%>/g, '" + ($1) + "') +
+          ) + 
       '}' + 
       'return output;'
     );
