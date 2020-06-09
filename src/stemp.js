@@ -13,8 +13,8 @@ class stemp {
             '}' +
             'output += "'
           )
-          // Handle statements with <% (for|if) %>
-          .replace(/<%(.+?(for|if|}).+?)%>/g, '";$1' +
+          // Handle statements with <% %>
+          .replace(/<%(.+?)%>/g, '";$1' +
             'output += "'
           ) + 
       '}' + 
